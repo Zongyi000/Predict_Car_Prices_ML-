@@ -13,11 +13,9 @@ def main():
 
     # Step 2: Encode label
     le = LabelEncoder()
-    print(car_data.columns)
-    car_data[['Car_Name', 'Year', 'Selling_Price', 'Present_Price', 'Kms_Driven',
-              'Fuel_Type', 'Seller_Type', 'Transmission', 'Owner']] = car_data[
-        ['Car_Name', 'Year', 'Selling_Price', 'Present_Price', 'Kms_Driven',
-         'Fuel_Type', 'Seller_Type', 'Transmission', 'Owner']].apply(le.fit_transform)
+    car_data_columns = ['Car_Name', 'Year', 'Selling_Price', 'Present_Price', 'Kms_Driven',
+                        'Fuel_Type', 'Seller_Type', 'Transmission', 'Owner']
+    car_data[car_data_columns] = car_data[car_data_columns].apply(le.fit_transform)
     print(car_data)
 
     # Step 3: Prepare the data

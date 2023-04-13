@@ -2,8 +2,9 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 from sklearn.preprocessing import LabelEncoder
 from joblib import dump, load
-import xgboost as xgb
+import matplotlib.pyplot as plt
 import pandas as pd
+import xgboost as xgb
 
 
 def main():
@@ -67,7 +68,12 @@ def main():
     print('Best Model MAE:', mean_absolute_error(y_test, y_pred_2))
     print('Best Model RMSE:', mean_squared_error(y_test, y_pred_2, squared=False))
 
-    # Step 7: Save the model
+    # Step 9: Evaluate feature importance
+    xgb.plot_importance(xgb_model_2);
+    plt.tight_layout()
+    plt.show()
+
+    # Step 10: Save the model
     dump(xgb_reg, "xgb_model.joblib")
 
 

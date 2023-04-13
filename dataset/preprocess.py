@@ -70,7 +70,7 @@ def main():
     non_relevant_columns = ["id", "url", "region_url", "image_url", "VIN", "posting_date"]
     out_of_scope_columns = ["image_url", "description", "model"]
     missing_data_columns = ["condition", "cylinders", "size", "county", "drive", "paint_color"]
-    imply_columns = ["lat", "long", "state"]
+    imply_columns = ["lat", "long", "region"]
     drop_columns = non_relevant_columns + out_of_scope_columns + missing_data_columns + imply_columns
     df = df.drop(columns=drop_columns)
     df = drop_year_lower_than(df)
@@ -86,9 +86,14 @@ def main():
     # move price to the last column
     price = df.pop('price')
     df['price'] = price
-    # split data into train and test
-    train = df.sample(frac=0.8, random_state=0)
-    test = df.drop(train.index)
+    # drop duplicates
+    df.drop_duplicates(inplace=True)
+    print(df.shape)
+    # shuffle data
+    df = df.sample(frac=1, random_state=0).reset_index(drop=True)
+    # train test split
+    train = df[:int(df.shape[0] * 0.8)]
+    test = df[int(df.shape[0] * 0.8):]
     train.to_csv("train/train.csv", index=False)
     test.to_csv("test/test.csv", index=False)
 

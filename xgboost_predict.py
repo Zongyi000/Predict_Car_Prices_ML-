@@ -1,77 +1,59 @@
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
+from sklearn.preprocessing import LabelEncoder
 from joblib import dump, load
 import xgboost as xgb
 import pandas as pd
 
-processed_dataset = "car_data.csv"
 
+def main():
+    # Step 1: Load the dataset
+    car_data = pd.read_csv('car_data.csv')
 
-train0 = pd.read_csv('/kaggle/input/craigslist-carstrucks-data/craigslistVehicles.csv')
-target_name = 'price'
-train_target0 = train0[target_name]
-train0 = train0.drop([target_name], axis=1)
+    # Step 2: Encode label
+    le = LabelEncoder()
+    print(car_data.columns)
+    car_data[['Car_Name', 'Year', 'Selling_Price', 'Present_Price', 'Kms_Driven',
+       'Fuel_Type', 'Seller_Type', 'Transmission', 'Owner']] = car_data[
+        ['Car_Name', 'Year', 'Selling_Price', 'Present_Price', 'Kms_Driven',
+         'Fuel_Type', 'Seller_Type', 'Transmission', 'Owner']].apply(le.fit_transform)
+    print(car_data)
 
-# Synthesis test0 from train0
-train0, test0, train_target0, test_target0 = train_test_split(train0, train_target0, test_size=0.2, random_state=0)
+    # Step 3: Prepare the data
+    X = car_data.drop(['Selling_Price'], axis=1)
+    y = car_data['Selling_Price']
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
-# For boosting model
-train0b = train0
-train_target0b = train_target0
-# Synthesis valid as test for selection models
-trainb, testb, targetb, target_testb = train_test_split(train0b, train_target0b, test_size=valid_part, random_state=0)
+    # Step 4: Train the model
+    xgb_model = xgb.XGBRegressor(
+        n_estimators=100,  # number of trees
+        learning_rate=0.1,  # step size shrinkage
+        max_depth=5,  # maximum depth of each tree
+        reg_lambda=0.5,  # L2 regularization term
+        objective='reg:squarederror'  # loss function
+    )
+    xgb_model.fit(X_train, y_train)
 
+    # Step 5: Evaluate the model
+    y_pred = xgb_model.predict(X_test)
+    print('R-squared:', r2_score(y_test, y_pred))
+    print('MAE:', mean_absolute_error(y_test, y_pred))
+    print('RMSE:', mean_squared_error(y_test, y_pred, squared=False))
 
-def acc_boosting_model(num, model, train, test, num_iteration=0):
-    # Calculation of accuracy of boosting model by different metrics
-
-    global acc_train_r2, acc_test_r2, acc_train_d, acc_test_d, acc_train_rmse, acc_test_rmse
-
-    if num_iteration > 0:
-        ytrain = model.predict(train, num_iteration=num_iteration)
-        ytest = model.predict(test, num_iteration=num_iteration)
-    else:
-        ytrain = model.predict(train)
-        ytest = model.predict(test)
-
-    print('target = ', targetb[:5].values)
-    print('ytrain = ', ytrain[:5])
-
-    acc_train_r2_num = round(r2_score(targetb, ytrain) * 100, 2)
-    print('acc(r2_score) for train =', acc_train_r2_num)
-    acc_train_r2.insert(num, acc_train_r2_num)
-
-    acc_train_d_num = round(acc_d(targetb, ytrain) * 100, 2)
-    print('acc(relative error) for train =', acc_train_d_num)
-    acc_train_d.insert(num, acc_train_d_num)
-
-    acc_train_rmse_num = round(acc_rmse(targetb, ytrain) * 100, 2)
-    print('acc(rmse) for train =', acc_train_rmse_num)
-    acc_train_rmse.insert(num, acc_train_rmse_num)
-
-    print('target_test =', target_testb[:5].values)
-    print('ytest =', ytest[:5])
-
-    acc_test_r2_num = round(r2_score(target_testb, ytest) * 100, 2)
-    print('acc(r2_score) for test =', acc_test_r2_num)
-    acc_test_r2.insert(num, acc_test_r2_num)
-
-    acc_test_d_num = round(acc_d(target_testb, ytest) * 100, 2)
-    print('acc(relative error) for test =', acc_test_d_num)
-    acc_test_d.insert(num, acc_test_d_num)
-
-    acc_test_rmse_num = round(acc_rmse(target_testb, ytest) * 100, 2)
-    print('acc(rmse) for test =', acc_test_rmse_num)
-    acc_test_rmse.insert(num, acc_test_rmse_num)
-
-
-def test():
-    model = xgb.XGBRegressor({'objective': 'reg:squarederror'})
-    parameters = {'n_estimators': [60, 100, 120, 140],
-                  'learning_rate': [0.01, 0.1],
-                  'max_depth': [5, 7],
-                  'reg_lambda': [0.5]}
-    xgb_reg = GridSearchCV(estimator=model, param_grid=parameters, cv=5, n_jobs=-1).fit(trainb, targetb)
+    # Step 6: Tune the hyperparameters
+    param_grid = {
+        'n_estimators': [60, 100, 120, 140],
+        'learning_rate': [0.01, 0.1],
+        'max_depth': [5, 7],
+        'reg_lambda': [0.5]
+    }
+    xgb_reg = GridSearchCV(estimator=xgb_model, param_grid=param_grid, cv=5, n_jobs=-1).fit(X_train, y_train)
     print("Best score: %0.3f" % xgb_reg.best_score_)
     print("Best parameters set:", xgb_reg.best_params_)
-    acc_boosting_model(7, xgb_reg, trainb, testb)
-    # dump(xgb_reg, "ttt")
+
+    # Step 7: Save the model
+    dump(xgb_reg, "xgb_model.joblib")
+
+
+if __name__ == "__main__":
+    main()

@@ -20,5 +20,6 @@ torchvision==0.14.1
 typing_extensions==4.5.0
 urllib3==1.26.15
 
-xgboost~=1.7.5
-joblib~=1.2.0
+xgboost==1.7.5
+joblib==1.2.0
+scikit-learn==1.2.2

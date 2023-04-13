@@ -69,7 +69,7 @@ def main():
     print('Best Model RMSE:', mean_squared_error(y_test, y_pred_2, squared=False))
 
     # Step 9: Evaluate feature importance
-    xgb.plot_importance(xgb_model_2);
+    xgb.plot_importance(xgb_model_2)
     plt.tight_layout()
     plt.show()
 

@@ -7,11 +7,12 @@ from model.ANN import ANN
 from preprocess import prepare_test_dataset
 
 
-def test(best_epoch):
+def test():
     test_set = prepare_test_dataset()
     test_loader = DataLoader(test_set, batch_size=1, shuffle=False)
     first_batch = next(iter(test_loader))
     input_size = first_batch[0].shape[1]
+    print(f'Input size: {input_size}')
     model = ANN(input_size=input_size, hidden_size=1024, output_size=1)
     model.load_state_dict(torch.load(f'model/ann_best.ckpt'))
     model.eval()

@@ -2,8 +2,9 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 from sklearn.preprocessing import LabelEncoder
 from joblib import dump, load
-import xgboost as xgb
+import matplotlib.pyplot as plt
 import pandas as pd
+import xgboost as xgb
 
 
 def main():
@@ -12,11 +13,9 @@ def main():
 
     # Step 2: Encode label
     le = LabelEncoder()
-    print(car_data.columns)
-    car_data[['Car_Name', 'Year', 'Selling_Price', 'Present_Price', 'Kms_Driven',
-              'Fuel_Type', 'Seller_Type', 'Transmission', 'Owner']] = car_data[
-        ['Car_Name', 'Year', 'Selling_Price', 'Present_Price', 'Kms_Driven',
-         'Fuel_Type', 'Seller_Type', 'Transmission', 'Owner']].apply(le.fit_transform)
+    car_data_columns = ['Car_Name', 'Year', 'Selling_Price', 'Present_Price', 'Kms_Driven',
+                        'Fuel_Type', 'Seller_Type', 'Transmission', 'Owner']
+    car_data[car_data_columns] = car_data[car_data_columns].apply(le.fit_transform)
     print(car_data)
 
     # Step 3: Prepare the data
@@ -67,7 +66,12 @@ def main():
     print('Best Model MAE:', mean_absolute_error(y_test, y_pred_2))
     print('Best Model RMSE:', mean_squared_error(y_test, y_pred_2, squared=False))
 
-    # Step 7: Save the model
+    # Step 9: Evaluate feature importance
+    xgb.plot_importance(xgb_model_2)
+    plt.tight_layout()
+    plt.show()
+
+    # Step 10: Save the model
     dump(xgb_reg, "xgb_model.joblib")
 
 

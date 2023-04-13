@@ -14,7 +14,7 @@ def main():
     le = LabelEncoder()
     print(car_data.columns)
     car_data[['Car_Name', 'Year', 'Selling_Price', 'Present_Price', 'Kms_Driven',
-       'Fuel_Type', 'Seller_Type', 'Transmission', 'Owner']] = car_data[
+              'Fuel_Type', 'Seller_Type', 'Transmission', 'Owner']] = car_data[
         ['Car_Name', 'Year', 'Selling_Price', 'Present_Price', 'Kms_Driven',
          'Fuel_Type', 'Seller_Type', 'Transmission', 'Owner']].apply(le.fit_transform)
     print(car_data)
@@ -26,9 +26,9 @@ def main():
 
     # Step 4: Train the model
     xgb_model = xgb.XGBRegressor(
-        n_estimators=100,  # number of trees
-        learning_rate=0.1,  # step size shrinkage
-        max_depth=5,  # maximum depth of each tree
+        n_estimators=120,  # number of trees
+        learning_rate=0.01,  # step size shrinkage
+        max_depth=7,  # maximum depth of each tree
         reg_lambda=0.5,  # L2 regularization term
         objective='reg:squarederror'  # loss function
     )
@@ -50,6 +50,22 @@ def main():
     xgb_reg = GridSearchCV(estimator=xgb_model, param_grid=param_grid, cv=5, n_jobs=-1).fit(X_train, y_train)
     print("Best score: %0.3f" % xgb_reg.best_score_)
     print("Best parameters set:", xgb_reg.best_params_)
+
+    # Step 7: Use the best model parameters
+    xgb_model_2 = xgb.XGBRegressor(
+        n_estimators=100,  # number of trees
+        learning_rate=0.1,  # step size shrinkage
+        max_depth=5,  # maximum depth of each tree
+        reg_lambda=0.5,  # L2 regularization term
+        objective='reg:squarederror'  # loss function
+    )
+    xgb_model_2.fit(X_train, y_train)
+
+    # Step 8: Compare result
+    y_pred_2 = xgb_model_2.predict(X_test)
+    print('Best Model R-squared:', r2_score(y_test, y_pred_2))
+    print('Best Model MAE:', mean_absolute_error(y_test, y_pred_2))
+    print('Best Model RMSE:', mean_squared_error(y_test, y_pred_2, squared=False))
 
     # Step 7: Save the model
     dump(xgb_reg, "xgb_model.joblib")

@@ -4,7 +4,6 @@ import joblib
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
-
 from ann.model.ANN import ANN
 
 
@@ -34,6 +33,7 @@ class ANNPredictionModel(CarPredictionModel):
         y = y.detach().numpy()
         y = price_scaler.inverse_transform(y)
         return y[0][0]
+
 class XGBoost(CarPredictionModel):
     def __init__(self, model_path):
         self.model = joblib.load(model_path)
@@ -61,8 +61,6 @@ class XGBoost(CarPredictionModel):
         # make predictions using the XGBoost model
         y_pred = self.model.predict(X_encoded_df)
         return y_pred
-# DTR, RFR
-
 
 class DTR(CarPredictionModel):
     def __init__(self, model_path):
@@ -118,3 +116,4 @@ class RFR(CarPredictionModel):
         # Make predictions using the loaded model
         y_pred = self.model.predict(X)
         return y_pred
+

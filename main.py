@@ -5,6 +5,7 @@ import torch
 from car_predict_model import ANNPredictionModel, XGBoost, DTR, RFR
 
 
+
 def print_options(options):
     for i, option in enumerate(options):
         print(f"{i + 1}. {option}")
@@ -73,6 +74,7 @@ def main():
         model = DTR('decision_tree_regressor/decision_tree_regressor.joblib')
     elif model_name == 'random_forest':
         model = RFR('random_forest_regressor/random_forest_regressor.joblib')
+
     y = model.predict(X)
     print("The predicted price is: ", y)
 

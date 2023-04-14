@@ -8,7 +8,9 @@ from math import sqrt
 
 
 def main():
+
     # run the preprocess.py to filter data
+
     # Load the saved model
     loaded_regressor = load("./random_forest_regressor.joblib")
 

@@ -23,8 +23,10 @@ def main():
         if car_data[col].dtype in numerics: continue
         categorical_columns.append(col)
 
-    # Concatenate train and test data
+    # Step 3: Concatenate train and test data
     combined_data = pd.concat([car_data, car_data_test], axis=0)
+
+    # Step 4: Transform and save preprocessor
     preprocessor = ColumnTransformer(
         transformers=[
             ('ordinal', OrdinalEncoder(),
@@ -34,8 +36,8 @@ def main():
     )
     combined_data = preprocessor.fit_transform(combined_data)
     dump(preprocessor, 'preprocessor.joblib')
-    print(type(combined_data))
 
+    # Step 5: Separate dataset and set year odometer value
     columns = ['manufacturer', 'fuel', 'title_status', 'transmission', 'type', 'state', 'year', 'odometer', 'price']
     combined_data = pd.DataFrame(combined_data, columns=columns)
     print(combined_data)
@@ -49,7 +51,7 @@ def main():
     car_data_test.loc[:, 'odometer'] = car_data_test['odometer'].astype(int)
     print(car_data)
 
-    # Step 3: Prepare the data
+    # Step 6: Prepare the train and test dataset
     X = car_data.drop(['price'], axis=1)
     y = car_data['price']
     X_test = car_data_test.drop(['price'], axis=1)
@@ -57,7 +59,7 @@ def main():
     X_train = X
     y_train = y
 
-    # Step 6: Tune the hyperparameters
+    # Step 7: Tune the hyperparameters
     xgb_clf = xgb.XGBRegressor(objective='reg:squarederror')
     param_grid = {
         'n_estimators': [60, 100, 120, 140],
@@ -69,7 +71,7 @@ def main():
     print("Best score: %0.3f" % xgb_reg.best_score_)
     print("Best parameters set:", xgb_reg.best_params_)
 
-    # Step 7: Use the best model parameters
+    # Step 8: Use the best model parameters
     xgb_model_best = xgb.XGBRegressor(
         n_estimators=140,  # number of trees
         learning_rate=0.1,  # step size shrinkage
@@ -79,18 +81,18 @@ def main():
     )
     xgb_model_best.fit(X_train, y_train)
 
-    # Step 8: Evaluate test dataset
+    # Step 9: Evaluate test dataset
     y_pred_best = xgb_model_best.predict(X_test)
     print('Best Model R-squared:', r2_score(y_test, y_pred_best))
     print('Best Model MAE:', mean_absolute_error(y_test, y_pred_best))
     print('Best Model RMSE:', mean_squared_error(y_test, y_pred_best, squared=False))
 
-    # Step 9: Evaluate feature importance
+    # Step 10: Evaluate feature importance
     xgb.plot_importance(xgb_model_best)
     plt.tight_layout()
     plt.show()
 
-    # Step 10: Save the model
+    # Step 11: Save the XGBoost model
     dump(xgb_model_best, "xgb_model.joblib")
 
 

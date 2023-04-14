@@ -11,6 +11,7 @@ from math import sqrt
 
 
 def main():
+    # 0run preprocess.py to filter the dataset and get train.csv in dataset
     # Load the dataset
     data = pd.read_csv('../dataset/train/train.csv')
 
@@ -41,17 +42,17 @@ def main():
         "min_samples_leaf": [1, 5, 10]
     }
 
-    # to accelerate, use RandomizedSearchCV instead of GridSearchCV
-
-    # grid_search = GridSearchCV(estimator=regressor, param_grid=param_grid, scoring="neg_mean_squared_error", cv=5, n_jobs=-1)
-    # grid_search.fit(X_train, y_train)
+    # to accelerate, use RandomizedSearchCV instead of GridSearchCV and change cv to 3
     random_search = RandomizedSearchCV(estimator=regressor, param_distributions=param_grid, n_iter=20, scoring="neg_mean_squared_error", cv=3, n_jobs=-1, random_state=42)
     random_search.fit(X_train, y_train)
 
     # Evaluate the model
     # best_regressor = grid_search.best_estimator_
     best_regressor = random_search.best_estimator_
+    # Make predictions using the model
     y_pred = best_regressor.predict(X_test)
+
+    # Calculate MSE and R^2
     mse = mean_squared_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
 
@@ -59,11 +60,34 @@ def main():
     print(f"RMSE: {sqrt(mse):.2f}")
     print(f"R^2 score: {r2:.2f}")
 
+    # Compare predicted and actual prices
+    print("Predicted Prices vs. Actual Prices")
+    for pred, actual in zip(y_pred[:10], y_test[:10]):
+        print(f"Predicted: {pred:.2f} | Actual: {actual:.2f}")
+
     # Evaluate feature importance
     feature_importance = best_regressor.feature_importances_
-    print("importance: ")
+    print("feature importance below:")
     for feature, importance in zip(X.columns, feature_importance):
         print(f"{feature}: {importance:.4f}")
+    print("-----")
+
+    # Sensitivity analysis
+    sensitivity_analysis = {}
+    for feature in X.columns:
+        X_test_copy = X_test.copy()
+        X_test_copy[feature] *= 1.05
+        y_pred_copy = best_regressor.predict(X_test_copy)
+        mse_copy = mean_squared_error(y_test, y_pred_copy)
+        sensitivity_analysis[feature] = (mse_copy - mse) / mse
+
+    # Print sensitivity analysis results
+    print("\nSensitivity Analysis:")
+    for feature, sensitivity in sensitivity_analysis.items():
+        print(f"{feature}: {sensitivity:.4f}")
+
+    # Inverse transform the standardized values
+    X_test[numerical_features] = scaler.inverse_transform(X_test[numerical_features])
 
     # Save the model
     dump(best_regressor, "random_forest_regressor.joblib")
@@ -73,10 +97,21 @@ if __name__ == "__main__":
     main()
 
 
-#results:
-#Mean squared error: 24928059.49
+# Mean squared error: 24928059.49
 # RMSE: 4992.80
 # R^2 score: 0.84
+# Predicted Prices vs. Actual Prices
+# Predicted: 6534.49 | Actual: 7988.00
+# Predicted: 12847.77 | Actual: 18500.00
+# Predicted: 19079.07 | Actual: 15900.00
+# Predicted: 6503.47 | Actual: 8200.00
+# Predicted: 7783.74 | Actual: 5900.00
+# Predicted: 23118.77 | Actual: 22590.00
+# Predicted: 15063.33 | Actual: 18990.00
+# Predicted: 5349.10 | Actual: 4500.00
+# Predicted: 34561.31 | Actual: 20500.00
+# Predicted: 20230.15 | Actual: 17990.00
+# feature importance below:
 # year: 0.5121
 # manufacturer: 0.0929
 # fuel: 0.0743
@@ -85,6 +120,17 @@ if __name__ == "__main__":
 # transmission: 0.0190
 # type: 0.1153
 # state: 0.0337
+# -----
+#
+# Sensitivity Analysis:
+# year: 0.0031
+# manufacturer: 0.5957
+# fuel: 0.0002
+# odometer: 0.2126
+# title_status: -0.0001
+# transmission: -0.0002
+# type: 0.0265
+# state: 0.0228
 
 
 # The code runs slowly because it is performing an extensive search for the best hyperparameters using GridSearchCV. GridSearchCV exhaustively tries all combinations of the provided hyperparameters and evaluates them using cross-validation, which can be computationally expensive, especially when working with a large dataset or many parameter combinations.

@@ -1,3 +1,4 @@
+import os
 import sys
 
 from preprocess import prepare_dataset
@@ -9,7 +10,7 @@ from torch.utils.tensorboard import SummaryWriter
 from model.ANN import ANN
 
 
-def train(learning_rate, batch_size, num_epochs, train_set, val_set):
+def train(learning_rate, batch_size, num_epochs, train_set, val_set, use_ckpt=False):
     train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True)
     val_loader = DataLoader(dataset=val_set, batch_size=batch_size, shuffle=False)
     # Get the first batch of data
@@ -19,6 +20,14 @@ def train(learning_rate, batch_size, num_epochs, train_set, val_set):
     criterion = nn.MSELoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=1e-5)
     scheduler = StepLR(optimizer, step_size=5, gamma=0.5)
+
+    if use_ckpt:
+        if os.path.exists('model/model_checkpoint.pth'):
+            checkpoint = torch.load('model/model_checkpoint.pth')
+            model.load_state_dict(checkpoint['model_state_dict'])
+            optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+            scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+
     val_loss = 0
     best_val_loss = sys.maxsize
     best_epoch = 0
@@ -64,7 +73,11 @@ def train(learning_rate, batch_size, num_epochs, train_set, val_set):
         for name, param in model.named_parameters():
             writer.add_histogram(f'Gradients/{name}', param.grad, epoch)
             writer.add_histogram(f'Weights/{name}', param, epoch)
-        torch.save(model.state_dict(), f'model/ann_{epoch + 1}.ckpt')
+        torch.save({
+            'model_state_dict': model.state_dict(),
+            'optimizer_state_dict': optimizer.state_dict(),
+            'scheduler_state_dict': scheduler.state_dict(),
+        }, 'model/model_checkpoint.pth')
     writer.close()
     return val_loss
 
@@ -90,4 +103,4 @@ def hyperparameter_tuning():
 if __name__ == '__main__':
     # hyperparameter_tuning()
     train_set, val_set = prepare_dataset()
-    train(0.0005, 32, 100, train_set, val_set)
+    train(0.0005, 32, 100, train_set, val_set, use_ckpt=True)

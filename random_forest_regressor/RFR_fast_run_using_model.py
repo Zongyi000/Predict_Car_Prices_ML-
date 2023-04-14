@@ -8,6 +8,7 @@ from math import sqrt
 
 
 def main():
+    # run the preprocess.py to filter data
     # Load the saved model
     loaded_regressor = load("./random_forest_regressor.joblib")
 
@@ -112,3 +113,4 @@ if __name__ == "__main__":
 # transmission: -0.0001
 # type: 0.0231
 # state: 0.0164
+

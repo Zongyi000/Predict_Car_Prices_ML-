@@ -8,6 +8,7 @@ from math import sqrt
 
 
 def main():
+    # run the preprocess.py to filter data
     # Load the saved model
     loaded_regressor = load("./decision_tree_regressor.joblib")
 
@@ -112,3 +113,4 @@ if __name__ == "__main__":
 # transmission: -0.0003
 # type: 0.0247
 # state: 0.0067
+

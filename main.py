@@ -2,26 +2,7 @@ import joblib
 import numpy as np
 import pandas as pd
 import torch
-
-from car_predict_model import CarPredictionModel
-from ann.model.ANN import ANN
-
-
-class ANNPredictionModel(CarPredictionModel):
-    def __init__(self, model_path):
-        self.model = ANN(120, hidden_size=1024, output_size=1)
-        self.model.load_state_dict(torch.load(model_path))
-        self.model.eval()
-
-    def predict(self, X) -> float:
-        preprocessor = joblib.load("ann/preprocessor.joblib")
-        price_scaler = joblib.load("ann/price_scaler.joblib")
-        X = preprocessor.transform(X)
-        X = torch.tensor(X, dtype=torch.float)  # Convert DataFrame to NumPy array and then to tensor
-        y = self.model(X)
-        y = y.detach().numpy()
-        y = price_scaler.inverse_transform(y)
-        return y[0][0]
+from car_predict_model import ANNPredictionModel, XGBoost, DTR, RFR
 
 
 def print_options(options):
@@ -78,20 +59,20 @@ def main():
     columns = ['year', 'manufacturer', 'fuel', 'odometer', 'title_status', 'transmission', 'type', 'state']
     X = pd.DataFrame([[year, manufacturer, fuel, odometer, title_status, transmission, type, state]], columns=columns)
     print(X.shape)
-    models = ['ANN', 'XGBoost', 'LinearRegression']
+    models = ['ANN', 'XGBoost', 'decision_tree', 'random_forest']
     print_options(models)
     model_name = int(input("Please select your model from the list: "))
     model_name = models[model_name - 1]
 
     model = None
-    if (model_name == 'ANN'):
+    if model_name == 'ANN':
         model = ANNPredictionModel('ann/model/ann_best.ckpt')
-    elif (model_name == 'XGBoost'):
-        # TODO: implement XGBoost
-        pass
-    elif (model_name == 'LinearRegression'):
-        # TODO: implement LinearRegression
-        pass
+    elif model_name == 'XGBoost':
+        model = XGBoost('xgboost/xgb_model.joblib')
+    elif model_name == 'decision_tree':
+        model = DTR('decision_tree_regressor/decision_tree_regressor.joblib')
+    elif model_name == 'random_forest':
+        model = RFR('random_forest_regressor/random_forest_regressor.joblib')
     y = model.predict(X)
     print("The predicted price is: ", y)
 

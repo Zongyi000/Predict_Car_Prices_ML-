@@ -2,9 +2,7 @@ import joblib
 import numpy as np
 import pandas as pd
 import torch
-
-from car_predict_model import ANNPredictionModel
-from ann.model.ANN import ANN
+from car_predict_model import ANNPredictionModel, XGBoost
 
 
 def print_options(options):
@@ -67,12 +65,11 @@ def main():
     model_name = models[model_name - 1]
 
     model = None
-    if (model_name == 'ANN'):
+    if model_name == 'ANN':
         model = ANNPredictionModel('ann/model/ann_best.ckpt')
-    elif (model_name == 'XGBoost'):
-        # TODO: implement XGBoost
-        pass
-    elif (model_name == 'LinearRegression'):
+    elif model_name == 'XGBoost':
+        model = XGBoost('xgboost/xgb_model.joblib')
+    elif model_name == 'LinearRegression':
         # TODO: implement LinearRegression
         pass
     y = model.predict(X)

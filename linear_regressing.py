@@ -7,7 +7,7 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader, TensorDataset, random_split
 
 
-DATA_FILENAME = "car_data.csv"
+DATA_FILENAME = "./linear_regressing_car_data.csv"
 dataframe_raw = pd.read_csv(DATA_FILENAME)
 dataframe_raw.head()
 

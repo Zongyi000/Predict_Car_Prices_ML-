@@ -9,7 +9,7 @@ import xgboost as xgb
 
 def main():
     # Step 1: Load the dataset
-    car_data = pd.read_csv('car_data.csv')
+    car_data = pd.read_csv('linear_regressing_car_data.csv')
 
     # Step 2: Encode label
     le = LabelEncoder()

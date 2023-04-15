@@ -1,3 +1,4 @@
+import joblib
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -7,6 +8,15 @@ from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.model_selection import GridSearchCV
 from joblib import dump
 from math import sqrt
+import matplotlib.pyplot as plt
+
+
+def plot_predictions(y_true, y_pred, title):
+    plt.scatter(y_true, y_pred, alpha=0.5)
+    plt.xlabel("True Values")
+    plt.ylabel("Predicted Values")
+    plt.title(title)
+    plt.show()
 
 
 def main():
@@ -16,10 +26,13 @@ def main():
     # data = pd.read_csv('../dataset/train/train.csv')
 
     # Encode categorical features
-    encoder = LabelEncoder()
+    encoders = {}
     categorical_features = ["manufacturer", "fuel", "title_status", "transmission", "type", "state"]
     for feature in categorical_features:
-        data[feature] = encoder.fit_transform(data[feature])
+        encoders[feature] = LabelEncoder()
+        data[feature] = encoders[feature].fit_transform(data[feature])
+        # save the encoder
+        joblib.dump(encoders[feature], f"{feature}_encoder.joblib")
 
     # Preprocess data
     X = data.drop("price", axis=1)
@@ -33,6 +46,9 @@ def main():
     X[numerical_features] = scaler.fit_transform(X[numerical_features])
     # print("step 4:")
     # print(X)
+
+    joblib.dump(scaler, "scaler.joblib")
+
 
     # Split the data into train and test sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -72,6 +88,13 @@ def main():
     for feature, importance in zip(X.columns, feature_importance):
         print(f"{feature}: {importance:.4f}")
     print("-----")
+
+    # Plot predictions for train set
+    y_train_pred = best_regressor.predict(X_train)
+    plot_predictions(y_train, y_train_pred, "Train Set: True vs. Predicted Prices")
+
+    # Plot predictions for test set
+    plot_predictions(y_test, y_pred, "Test Set: True vs. Predicted Prices")
 
     # Sensitivity analysis
     sensitivity_analysis = {}

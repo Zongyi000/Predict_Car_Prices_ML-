@@ -34,6 +34,7 @@ class ANNPredictionModel(CarPredictionModel):
         y = price_scaler.inverse_transform(y)
         return y[0][0]
 
+
 class XGBoost(CarPredictionModel):
     def __init__(self, model_path):
         self.model = joblib.load(model_path)
@@ -45,7 +46,8 @@ class XGBoost(CarPredictionModel):
         X_copy["price"] = 0
         X_copy["year"] -= 1900
         X_copy = X_copy.reindex(
-            columns=['manufacturer', 'fuel', 'title_status', 'transmission', 'type', 'state', 'year', 'odometer', 'price'])
+            columns=['manufacturer', 'fuel', 'title_status', 'transmission', 'type', 'state', 'year', 'odometer',
+                     'price'])
         # print(X_copy)
 
         # Transform the input data using the encoder (preprocessor)
@@ -62,28 +64,29 @@ class XGBoost(CarPredictionModel):
         y_pred = self.model.predict(X_encoded_df)
         return y_pred
 
+
 class DTR(CarPredictionModel):
     def __init__(self, model_path):
         self.model = joblib.load(model_path)
-        # self.encoder = joblib.load("xgboost/preprocessor.joblib")
+        self.categorical_features = ["manufacturer", "fuel", "title_status", "transmission", "type", "state"]
+        self.categorical_encoders = {}
+        for feature in self.categorical_features:
+            self.categorical_encoders[feature] = joblib.load("decision_tree_regressor/" + feature + "_encoder.joblib")
+        self.scaler_encoder = joblib.load("decision_tree_regressor/scaler.joblib")
 
     def predict(self, X) -> float:
         data = X
         X["price"] = 0
         # Encode categorical features
-        encoder = LabelEncoder()
-        categorical_features = ["manufacturer", "fuel", "title_status", "transmission", "type", "state"]
-        for feature in categorical_features:
-            data[feature] = encoder.fit_transform(data[feature])
+        for feature in self.categorical_features:
+            data[feature] = self.categorical_encoders[feature].transform(data[feature])
 
         # Preprocess data
         X = data.drop("price", axis=1)
         y = data["price"]
 
-        # Scale numerical features
-        scaler = StandardScaler()
         numerical_features = ["year", "odometer"]
-        X[numerical_features] = scaler.fit_transform(X[numerical_features])
+        X[numerical_features] = self.scaler_encoder.fit_transform(X[numerical_features])
 
         # Make predictions using the loaded model
         y_pred = self.model.predict(X)
@@ -93,27 +96,26 @@ class DTR(CarPredictionModel):
 class RFR(CarPredictionModel):
     def __init__(self, model_path):
         self.model = joblib.load(model_path)
-        # self.encoder = joblib.load("xgboost/preprocessor.joblib")
+        self.categorical_features = ["manufacturer", "fuel", "title_status", "transmission", "type", "state"]
+        self.categorical_encoders = {}
+        for feature in self.categorical_features:
+            self.categorical_encoders[feature] = joblib.load("random_forest_regressor/" + feature + "_encoder.joblib")
+        self.scaler_encoder = joblib.load("random_forest_regressor/scaler.joblib")
 
     def predict(self, X) -> float:
         data = X
         X["price"] = 0
         # Encode categorical features
-        encoder = LabelEncoder()
-        categorical_features = ["manufacturer", "fuel", "title_status", "transmission", "type", "state"]
-        for feature in categorical_features:
-            data[feature] = encoder.fit_transform(data[feature])
+        for feature in self.categorical_features:
+            data[feature] = self.categorical_encoders[feature].transform(data[feature])
 
         # Preprocess data
         X = data.drop("price", axis=1)
         y = data["price"]
 
-        # Scale numerical features
-        scaler = StandardScaler()
         numerical_features = ["year", "odometer"]
-        X[numerical_features] = scaler.fit_transform(X[numerical_features])
+        X[numerical_features] = self.scaler_encoder.fit_transform(X[numerical_features])
 
         # Make predictions using the loaded model
         y_pred = self.model.predict(X)
         return y_pred
-

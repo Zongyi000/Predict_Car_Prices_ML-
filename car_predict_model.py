@@ -2,6 +2,8 @@ from abc import abstractmethod
 import torch
 import joblib
 import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 from ann.model.ANN import ANN
 
 
@@ -31,6 +33,8 @@ class ANNPredictionModel(CarPredictionModel):
         y = y.detach().numpy()
         y = price_scaler.inverse_transform(y)
         return y[0][0]
+
+
 class XGBoost(CarPredictionModel):
     def __init__(self, model_path):
         self.model = joblib.load(model_path)
@@ -42,7 +46,8 @@ class XGBoost(CarPredictionModel):
         X_copy["price"] = 0
         X_copy["year"] -= 1900
         X_copy = X_copy.reindex(
-            columns=['manufacturer', 'fuel', 'title_status', 'transmission', 'type', 'state', 'year', 'odometer', 'price'])
+            columns=['manufacturer', 'fuel', 'title_status', 'transmission', 'type', 'state', 'year', 'odometer',
+                     'price'])
         # print(X_copy)
 
         # Transform the input data using the encoder (preprocessor)
@@ -57,4 +62,60 @@ class XGBoost(CarPredictionModel):
 
         # make predictions using the XGBoost model
         y_pred = self.model.predict(X_encoded_df)
+        return y_pred
+
+
+class DTR(CarPredictionModel):
+    def __init__(self, model_path):
+        self.model = joblib.load(model_path)
+        self.categorical_features = ["manufacturer", "fuel", "title_status", "transmission", "type", "state"]
+        self.categorical_encoders = {}
+        for feature in self.categorical_features:
+            self.categorical_encoders[feature] = joblib.load("decision_tree_regressor/" + feature + "_encoder.joblib")
+        self.scaler_encoder = joblib.load("decision_tree_regressor/scaler.joblib")
+
+    def predict(self, X) -> float:
+        data = X
+        X["price"] = 0
+        # Encode categorical features
+        for feature in self.categorical_features:
+            data[feature] = self.categorical_encoders[feature].transform(data[feature])
+
+        # Preprocess data
+        X = data.drop("price", axis=1)
+        y = data["price"]
+
+        numerical_features = ["year", "odometer"]
+        X[numerical_features] = self.scaler_encoder.fit_transform(X[numerical_features])
+
+        # Make predictions using the loaded model
+        y_pred = self.model.predict(X)
+        return y_pred
+
+
+class RFR(CarPredictionModel):
+    def __init__(self, model_path):
+        self.model = joblib.load(model_path)
+        self.categorical_features = ["manufacturer", "fuel", "title_status", "transmission", "type", "state"]
+        self.categorical_encoders = {}
+        for feature in self.categorical_features:
+            self.categorical_encoders[feature] = joblib.load("random_forest_regressor/" + feature + "_encoder.joblib")
+        self.scaler_encoder = joblib.load("random_forest_regressor/scaler.joblib")
+
+    def predict(self, X) -> float:
+        data = X
+        X["price"] = 0
+        # Encode categorical features
+        for feature in self.categorical_features:
+            data[feature] = self.categorical_encoders[feature].transform(data[feature])
+
+        # Preprocess data
+        X = data.drop("price", axis=1)
+        y = data["price"]
+
+        numerical_features = ["year", "odometer"]
+        X[numerical_features] = self.scaler_encoder.fit_transform(X[numerical_features])
+
+        # Make predictions using the loaded model
+        y_pred = self.model.predict(X)
         return y_pred

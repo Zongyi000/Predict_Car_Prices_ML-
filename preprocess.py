@@ -2,7 +2,7 @@ import pandas as pd
 
 vehicle_file_path = "dataset/vehicles.csv"
 
-
+# filter out the invalid price data
 def price_filter(df):
     lower_bound, upper_bound = df['price'].quantile([0.10, 0.99])
     print(lower_bound, upper_bound)

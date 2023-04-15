@@ -81,9 +81,8 @@ def main():
         plt.xlabel(column)
         plt.ylabel('price')
         plt.legend(['original', 'changed'])
-        plt.show()
-        # save figure
         plt.savefig('sensitive_analysis/' + column + '.png')
+        plt.show()
 
     # calculate std dev
     change_map = {}
@@ -101,7 +100,6 @@ def main():
     # convert result to csv
     result = pd.DataFrame(result)
     result.to_csv('sensitive_analysis/result.csv')
-
 
 if __name__ == '__main__':
     main()

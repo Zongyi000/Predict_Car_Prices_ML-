@@ -17,6 +17,8 @@ def test():
     model.load_state_dict(torch.load(f'model/ann_best.ckpt'))
     model.eval()
     price_scaler = joblib.load('price_scaler.joblib')
+    accuracy = 0
+    r_squared = 0
     with torch.no_grad():
         num_samples = 0
         sum_squared_errors = 0
@@ -28,7 +30,9 @@ def test():
             sum_squared_errors += squared_errors.sum()  # Sum the squared errors for the batch
             num_samples += len(y)  # Update the total number of samplesError
             abs_error = np.abs(y_ - y)
+            accuracy += (abs_error / y) * 100
             print(f'Predicted: {y_[0][0]:.2f}, Actual: {y[0][0]:.2f}', f'Error: {abs_error[0][0]:.2f}')
+        accuracy = accuracy / num_samples
         mse = sum_squared_errors / num_samples  # Calculate the mean squared error
         rmse = np.sqrt(mse)
         print(f'Test loss: {rmse:.4f}')

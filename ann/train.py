@@ -115,4 +115,4 @@ def hyperparameter_tuning():
 if __name__ == '__main__':
     # hyperparameter_tuning()
     train_set, val_set = prepare_dataset()
-    train(0.0005, 32, 100, train_set, val_set, use_ckpt=True)
+    # train(0.0005, 32, 100, train_set, val_set, use_ckpt=True)

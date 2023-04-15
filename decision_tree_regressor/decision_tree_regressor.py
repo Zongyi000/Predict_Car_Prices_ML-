@@ -13,6 +13,7 @@ def main():
     # 0run preprocess.py to filter the dataset and get train.csv in dataset
     # Load the dataset
     data = pd.read_csv('../dataset/train/train.csv')
+    # data = pd.read_csv('../dataset/train/train.csv')
 
     # Encode categorical features
     encoder = LabelEncoder()

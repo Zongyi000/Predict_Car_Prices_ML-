@@ -1,6 +1,9 @@
 import os
 import sys
 
+import numpy as np
+import pandas as pd
+
 from preprocess import prepare_dataset
 import torch
 from torch import nn
@@ -10,7 +13,7 @@ from torch.utils.tensorboard import SummaryWriter
 from model.ANN import ANN
 
 
-def train(learning_rate, batch_size, num_epochs, train_set, val_set, use_ckpt=False):
+def train(learning_rate, batch_size, num_epochs, train_set, val_set, use_ckpt=False, save_ckpt=True):
     train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True)
     val_loader = DataLoader(dataset=val_set, batch_size=batch_size, shuffle=False)
     # Get the first batch of data
@@ -18,7 +21,9 @@ def train(learning_rate, batch_size, num_epochs, train_set, val_set, use_ckpt=Fa
     input_size = first_batch[0].shape[1]
     model = ANN(input_size=input_size, hidden_size=1024, output_size=1)
     criterion = nn.MSELoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=1e-5)
+    optimizer = torch.optim.Adam(model.parameters(),
+                                 lr=learning_rate,
+                                 weight_decay=1e-5)
     scheduler = StepLR(optimizer, step_size=5, gamma=0.5)
 
     if use_ckpt:
@@ -85,18 +90,25 @@ def train(learning_rate, batch_size, num_epochs, train_set, val_set, use_ckpt=Fa
 def hyperparameter_tuning():
     learning_rates = [0.01, 0.005, 0.001, 0.0005, 0.0001]
     batch_sizes = [32, 64, 128, 256]
+    dropout_rates = [0.1, 0.2, 0.3, 0.4, 0.5]
     # num_epochs = [10, 20, 30]
     train_set, val_set = prepare_dataset()
     min_val_loss = sys.maxsize
+    loss_table = np.zeros((len(learning_rates), len(batch_sizes), len(dropout_rates)))
     for lr in learning_rates:
         for bs in batch_sizes:
-            # for ne in num_epochs:
-            val_loss = train(lr, bs, 1, train_set, val_set)
-            if val_loss < min_val_loss:
-                min_val_loss = val_loss
-                best_lr = lr
-                best_bs = bs
-
+            for dropout_rate in dropout_rates:
+                # for ne in num_epochs:
+                val_loss = train(lr, bs, 1, train_set, val_set, use_ckpt=False, save_ckpt=False)
+                loss_table[learning_rates.index(lr), batch_sizes.index(bs), dropout_rates.index(dropout_rate)] = val_loss
+                if val_loss < min_val_loss:
+                    min_val_loss = val_loss
+                    best_lr = lr
+                    best_bs = bs
+    # draw the loss table
+    print(loss_table)
+    loss_table = pd.DataFrame(loss_table)
+    loss_table.to_csv('loss_table.csv')
     print(f'Best learning rate: {best_lr}', f'Best batch size: {best_bs}', f'Min validation loss: {min_val_loss:.4f}')
 
 

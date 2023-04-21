@@ -2,6 +2,7 @@ import pandas as pd
 
 vehicle_file_path = "dataset/vehicles.csv"
 
+
 # filter out the invalid price data
 def price_filter(df):
     lower_bound, upper_bound = df['price'].quantile([0.10, 0.99])
@@ -60,8 +61,21 @@ def drop_title_status(df):
     return filtered_data
 
 
-def fill_missing_transmission_with_automatic(df):
-    df['transmission'] = df['transmission'].fillna('automatic')
+def drop_missing_transmission(df):
+    filtered_data = df[df['transmission'].notna()]
+    filtered_data = filtered_data[filtered_data['transmission'].notnull()]
+    print("dropped count: ", df.shape[0] - filtered_data.shape[0])
+    return df
+
+
+def group_year(df):
+    df['year'] = df['year'].astype(int)
+    for y in range(1990, 2025, 5):
+        df.loc[(df['year'] >= y) & (df['year'] < y + 5), 'year'] = y
+    # set year type to int
+    df['year'] = df['year'].astype(str)
+    # add 's' to year
+    df['year'] = df['year'].apply(lambda x: x + 's')
     return df
 
 
@@ -79,7 +93,7 @@ def main():
     df = drop_missing_odometer(df)
     df = drop_missing_manufacturer(df)
     df = drop_title_status(df)
-    df = fill_missing_transmission_with_automatic(df)
+    df = drop_missing_transmission(df)
     print_columns_has_missing_data(df)
     df = price_filter(df)
     print(df.shape)
@@ -91,6 +105,8 @@ def main():
     print(df.shape)
     # shuffle data
     df = df.sample(frac=1, random_state=0).reset_index(drop=True)
+    # group year
+    df = group_year(df)
     # train test split
     train = df[:int(df.shape[0] * 0.8)]
     test = df[int(df.shape[0] * 0.8):]

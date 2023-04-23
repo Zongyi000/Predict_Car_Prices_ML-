@@ -10,6 +10,7 @@ from joblib import dump
 from math import sqrt
 import joblib
 import matplotlib.pyplot as plt
+from sklearn.tree import plot_tree
 
 
 def plot_predictions(y_true, y_pred, title):
@@ -27,7 +28,7 @@ def main():
 
     # Encode categorical features
     encoders = {}
-    categorical_features = ["manufacturer", "fuel", "title_status", "transmission", "type", "state"]
+    categorical_features = ["manufacturer", "fuel", "title_status", "transmission", "type", "year", "state"]
     for feature in categorical_features:
         encoders[feature] = LabelEncoder()
         data[feature] = encoders[feature].fit_transform(data[feature])
@@ -40,28 +41,30 @@ def main():
 
     # Scale numerical features
     scaler = StandardScaler()
-    numerical_features = ["year", "odometer"]
+    numerical_features = ["odometer"]
     X[numerical_features] = scaler.fit_transform(X[numerical_features])
     joblib.dump(scaler, "scaler.joblib")
     # Split the data into train and test sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-
     # Train the model
     regressor = RandomForestRegressor(random_state=42)
     param_grid = {
-        "n_estimators": [50, 100, 200],
-        "max_depth": [None, 10, 20, 30],
-        "min_samples_split": [2, 10, 20],
-        "min_samples_leaf": [1, 5, 10]
+        "n_estimators": [50, 100, 200], #number of decision trees 
+        "max_depth": [None, 10, 20, 30], # maximum depth of each decision tree
+        "min_samples_split": [2, 10, 20], #minimum number of samples required to split an internal node in a decision tree
+        "min_samples_leaf": [1, 5, 10] #minimum number of samples required to be at a leaf node in a decision tree
     }
 
     # to accelerate, use RandomizedSearchCV instead of GridSearchCV and change cv to 3
-    random_search = RandomizedSearchCV(estimator=regressor, param_distributions=param_grid, n_iter=20, scoring="neg_mean_squared_error", cv=3, n_jobs=-1, random_state=42)
+    random_search = RandomizedSearchCV(estimator=regressor, param_distributions=param_grid, n_iter=20, 
+        scoring="neg_mean_squared_error", cv=3, n_jobs=-1, random_state=42)
+    # print("Best score: ", random_search.best )
     random_search.fit(X_train, y_train)
+    print("Best score: ", random_search.best_score_)
+    print("Best parameter set: ", random_search.best_params_)
 
     # Evaluate the model
-    # best_regressor = grid_search.best_estimator_
     best_regressor = random_search.best_estimator_
     # Make predictions using the model
     y_pred = best_regressor.predict(X_test)
@@ -112,6 +115,12 @@ def main():
 
     # Save the model
     dump(best_regressor, "random_forest_regressor.joblib")
+
+    # Visualize the first tree in the random forest
+    first_tree = best_regressor.estimators_[0]
+    plt.figure(figsize=(20, 10))
+    plot_tree(first_tree, feature_names=X.columns, filled=True, rounded=True, fontsize=10)
+    plt.show()
 
 
 if __name__ == "__main__":

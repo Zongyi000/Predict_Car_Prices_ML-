@@ -45,9 +45,9 @@ def main():
     car_data = combined_data[:len(car_data)]
     car_data_test = combined_data[len(car_data):]
 
-    car_data.loc[:, 'year'] = (car_data['year'] - 1900).astype(int)
+    car_data.loc[:, 'year'] = car_data['year'].apply(lambda x: int(x[:-1])) - 1900
     car_data.loc[:, 'odometer'] = car_data['odometer'].astype(int)
-    car_data_test.loc[:, 'year'] = (car_data_test['year'] - 1900).astype(int)
+    car_data_test.loc[:, 'year'] = car_data_test['year'].apply(lambda x: int(x[:-1])) - 1900
     car_data_test.loc[:, 'odometer'] = car_data_test['odometer'].astype(int)
     print(car_data)
 
@@ -60,6 +60,12 @@ def main():
     y_train = y
 
     # Step 7: Tune the hyperparameters
+    X_train['manufacturer'] = X_train['manufacturer'].astype(float)
+    X_train['fuel'] = X_train['fuel'].astype(float)
+    X_train['title_status'] = X_train['title_status'].astype(float)
+    X_train['transmission'] = X_train['transmission'].astype(float)
+    X_train['type'] = X_train['type'].astype(float)
+    X_train['state'] = X_train['state'].astype(float)
     xgb_clf = xgb.XGBRegressor(objective='reg:squarederror')
     param_grid = {
         'n_estimators': [60, 100, 120, 140],
@@ -82,6 +88,12 @@ def main():
     xgb_model_best.fit(X_train, y_train)
 
     # Step 9: Evaluate test dataset
+    X_test['manufacturer'] = X_test['manufacturer'].astype(float)
+    X_test['fuel'] = X_test['fuel'].astype(float)
+    X_test['title_status'] = X_test['title_status'].astype(float)
+    X_test['transmission'] = X_test['transmission'].astype(float)
+    X_test['type'] = X_test['type'].astype(float)
+    X_test['state'] = X_test['state'].astype(float)
     y_pred_best = xgb_model_best.predict(X_test)
     print('Best Model R-squared:', r2_score(y_test, y_pred_best))
     print('Best Model MAE:', mean_absolute_error(y_test, y_pred_best))

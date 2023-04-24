@@ -1,11 +1,11 @@
 digraph {
     graph [ rankdir=TB ]
 
-    0 [ label="year<114.5" ]
+    0 [ label="year<112.5" ]
     0 -> 1 [label="yes, missing" color="#0000FF"]
     0 -> 2 [label="no" color="#FF0000"]
 
-    1 [ label="year<110.5" ]
+    1 [ label="year<107.5" ]
     1 -> 3 [label="yes, missing" color="#0000FF"]
     1 -> 4 [label="no" color="#FF0000"]
 
@@ -13,99 +13,99 @@ digraph {
     3 -> 7 [label="yes, missing" color="#0000FF"]
     3 -> 8 [label="no" color="#FF0000"]
 
-    7 [ label="odometer<184528.5" ]
+    7 [ label="odometer<176920.5" ]
     7 -> 15 [label="yes, missing" color="#0000FF"]
     7 -> 16 [label="no" color="#FF0000"]
 
-    15 [ label="year<105.5" ]
+    15 [ label="year<102.5" ]
     15 -> 31 [label="yes, missing" color="#0000FF"]
     15 -> 32 [label="no" color="#FF0000"]
 
-    31 [ label="odometer<117411" ]
+    31 [ label="odometer<99944.5" ]
     31 -> 63 [label="yes, missing" color="#0000FF"]
     31 -> 64 [label="no" color="#FF0000"]
 
-    63 [ label="year<100.5" ]
-    63 -> 121 [label="yes, missing" color="#0000FF"]
-    63 -> 122 [label="no" color="#FF0000"]
+    63 [ label="year<97.5" ]
+    63 -> 123 [label="yes, missing" color="#0000FF"]
+    63 -> 124 [label="no" color="#FF0000"]
 
-    121 [ label="leaf=1617.01013" ]
+    123 [ label="leaf=1520.75244" ]
 
-    122 [ label="leaf=2374.7937" ]
+    124 [ label="leaf=2530.05151" ]
 
     64 [ label="manufacturer<37.5" ]
-    64 -> 123 [label="yes, missing" color="#0000FF"]
-    64 -> 124 [label="no" color="#FF0000"]
+    64 -> 125 [label="yes, missing" color="#0000FF"]
+    64 -> 126 [label="no" color="#FF0000"]
 
-    123 [ label="leaf=1677.1488" ]
+    125 [ label="leaf=1744.90295" ]
 
-    124 [ label="leaf=460.272034" ]
+    126 [ label="leaf=477.723114" ]
 
-    32 [ label="type<5.5" ]
+    32 [ label="manufacturer<34.5" ]
     32 -> 65 [label="yes, missing" color="#0000FF"]
     32 -> 66 [label="no" color="#FF0000"]
 
-    65 [ label="manufacturer<12.5" ]
-    65 -> 125 [label="yes, missing" color="#0000FF"]
-    65 -> 126 [label="no" color="#FF0000"]
+    65 [ label="manufacturer<26.5" ]
+    65 -> 127 [label="yes, missing" color="#0000FF"]
+    65 -> 128 [label="no" color="#FF0000"]
 
-    125 [ label="leaf=1676.66467" ]
+    127 [ label="leaf=2187.38428" ]
 
-    126 [ label="leaf=890.057312" ]
+    128 [ label="leaf=2798.01221" ]
 
-    66 [ label="manufacturer<33" ]
-    66 -> 127 [label="yes, missing" color="#0000FF"]
-    66 -> 128 [label="no" color="#FF0000"]
+    66 [ label="odometer<144882.5" ]
+    66 -> 129 [label="yes, missing" color="#0000FF"]
+    66 -> 130 [label="no" color="#FF0000"]
 
-    127 [ label="leaf=2418.24146" ]
+    129 [ label="leaf=731.806702" ]
 
-    128 [ label="leaf=605.16803" ]
+    130 [ label="leaf=405.510529" ]
 
-    16 [ label="year<105.5" ]
+    16 [ label="year<102.5" ]
     16 -> 33 [label="yes, missing" color="#0000FF"]
     16 -> 34 [label="no" color="#FF0000"]
 
-    33 [ label="odometer<246799" ]
+    33 [ label="odometer<197986.5" ]
     33 -> 67 [label="yes, missing" color="#0000FF"]
     33 -> 68 [label="no" color="#FF0000"]
 
-    67 [ label="manufacturer<37.5" ]
-    67 -> 129 [label="yes, missing" color="#0000FF"]
-    67 -> 130 [label="no" color="#FF0000"]
+    67 [ label="manufacturer<30" ]
+    67 -> 131 [label="yes, missing" color="#0000FF"]
+    67 -> 132 [label="no" color="#FF0000"]
 
-    129 [ label="leaf=1353.65417" ]
+    131 [ label="leaf=1316.99084" ]
 
-    130 [ label="leaf=436.865234" ]
+    132 [ label="leaf=1897.03479" ]
 
-    68 [ label="manufacturer<26.5" ]
-    68 -> 131 [label="yes, missing" color="#0000FF"]
-    68 -> 132 [label="no" color="#FF0000"]
+    68 [ label="manufacturer<38.5" ]
+    68 -> 133 [label="yes, missing" color="#0000FF"]
+    68 -> 134 [label="no" color="#FF0000"]
 
-    131 [ label="leaf=999.787903" ]
+    133 [ label="leaf=1132.86658" ]
 
-    132 [ label="leaf=1234.42371" ]
+    134 [ label="leaf=1971.27625" ]
 
-    34 [ label="type<5.5" ]
+    34 [ label="manufacturer<34.5" ]
     34 -> 69 [label="yes, missing" color="#0000FF"]
     34 -> 70 [label="no" color="#FF0000"]
 
-    69 [ label="manufacturer<31.5" ]
-    69 -> 133 [label="yes, missing" color="#0000FF"]
-    69 -> 134 [label="no" color="#FF0000"]
+    69 [ label="type<5.5" ]
+    69 -> 135 [label="yes, missing" color="#0000FF"]
+    69 -> 136 [label="no" color="#FF0000"]
 
-    133 [ label="leaf=615.618164" ]
+    135 [ label="leaf=765.302246" ]
 
-    134 [ label="leaf=223.560013" ]
+    136 [ label="leaf=1691.61353" ]
 
-    70 [ label="manufacturer<34.5" ]
-    70 -> 135 [label="yes, missing" color="#0000FF"]
-    70 -> 136 [label="no" color="#FF0000"]
+    70 [ label="manufacturer<38.5" ]
+    70 -> 137 [label="yes, missing" color="#0000FF"]
+    70 -> 138 [label="no" color="#FF0000"]
 
-    135 [ label="leaf=1735.59753" ]
+    137 [ label="leaf=326.874207" ]
 
-    136 [ label="leaf=858.964539" ]
+    138 [ label="leaf=1149.18457" ]
 
-    8 [ label="odometer<88995" ]
+    8 [ label="odometer<96754.5" ]
     8 -> 17 [label="yes, missing" color="#0000FF"]
     8 -> 18 [label="no" color="#FF0000"]
 
@@ -113,89 +113,89 @@ digraph {
     17 -> 35 [label="yes, missing" color="#0000FF"]
     17 -> 36 [label="no" color="#FF0000"]
 
-    35 [ label="odometer<297" ]
+    35 [ label="odometer<1249.5" ]
     35 -> 71 [label="yes, missing" color="#0000FF"]
     35 -> 72 [label="no" color="#FF0000"]
 
-    71 [ label="odometer<13" ]
-    71 -> 137 [label="yes, missing" color="#0000FF"]
-    71 -> 138 [label="no" color="#FF0000"]
+    71 [ label="odometer<6" ]
+    71 -> 139 [label="yes, missing" color="#0000FF"]
+    71 -> 140 [label="no" color="#FF0000"]
 
-    137 [ label="leaf=397.492859" ]
+    139 [ label="leaf=382.07428" ]
 
-    138 [ label="leaf=639.223633" ]
+    140 [ label="leaf=653.848816" ]
 
-    72 [ label="odometer<49375" ]
-    72 -> 139 [label="yes, missing" color="#0000FF"]
-    72 -> 140 [label="no" color="#FF0000"]
+    72 [ label="odometer<46542" ]
+    72 -> 141 [label="yes, missing" color="#0000FF"]
+    72 -> 142 [label="no" color="#FF0000"]
 
-    139 [ label="leaf=1533.70581" ]
+    141 [ label="leaf=1573.87415" ]
 
-    140 [ label="leaf=1076.63196" ]
+    142 [ label="leaf=1005.15527" ]
 
-    36 [ label="odometer<59627" ]
+    36 [ label="type<3.5" ]
     36 -> 73 [label="yes, missing" color="#0000FF"]
     36 -> 74 [label="no" color="#FF0000"]
 
-    73 [ label="type<7.5" ]
-    73 -> 141 [label="yes, missing" color="#0000FF"]
-    73 -> 142 [label="no" color="#FF0000"]
+    73 [ label="odometer<59575.5" ]
+    73 -> 143 [label="yes, missing" color="#0000FF"]
+    73 -> 144 [label="no" color="#FF0000"]
 
-    141 [ label="leaf=2333.12158" ]
+    143 [ label="leaf=2340.46387" ]
 
-    142 [ label="leaf=1298.24695" ]
+    144 [ label="leaf=1538.87292" ]
 
-    74 [ label="manufacturer<28.5" ]
-    74 -> 143 [label="yes, missing" color="#0000FF"]
-    74 -> 144 [label="no" color="#FF0000"]
+    74 [ label="type<5.5" ]
+    74 -> 145 [label="yes, missing" color="#0000FF"]
+    74 -> 146 [label="no" color="#FF0000"]
 
-    143 [ label="leaf=1397.49207" ]
+    145 [ label="leaf=803.005005" ]
 
-    144 [ label="leaf=1777.46521" ]
+    146 [ label="leaf=1336.3772" ]
 
-    18 [ label="year<106.5" ]
+    18 [ label="odometer<149988" ]
     18 -> 37 [label="yes, missing" color="#0000FF"]
     18 -> 38 [label="no" color="#FF0000"]
 
-    37 [ label="odometer<138276.5" ]
+    37 [ label="type<8.5" ]
     37 -> 75 [label="yes, missing" color="#0000FF"]
     37 -> 76 [label="no" color="#FF0000"]
 
-    75 [ label="type<8.5" ]
-    75 -> 145 [label="yes, missing" color="#0000FF"]
-    75 -> 146 [label="no" color="#FF0000"]
+    75 [ label="type<5.5" ]
+    75 -> 147 [label="yes, missing" color="#0000FF"]
+    75 -> 148 [label="no" color="#FF0000"]
 
-    145 [ label="leaf=798.10022" ]
+    147 [ label="leaf=764.294006" ]
 
-    146 [ label="leaf=601.071228" ]
+    148 [ label="leaf=1061.96179" ]
 
     76 [ label="type<9.5" ]
-    76 -> 147 [label="yes, missing" color="#0000FF"]
-    76 -> 148 [label="no" color="#FF0000"]
+    76 -> 149 [label="yes, missing" color="#0000FF"]
+    76 -> 150 [label="no" color="#FF0000"]
 
-    147 [ label="leaf=498.925781" ]
+    149 [ label="leaf=553.617981" ]
 
-    148 [ label="leaf=615.885986" ]
+    150 [ label="leaf=935.229797" ]
 
-    38 [ label="type<9.5" ]
+    38 [ label="year<102.5" ]
     38 -> 77 [label="yes, missing" color="#0000FF"]
     38 -> 78 [label="no" color="#FF0000"]
 
-    77 [ label="type<8.5" ]
-    77 -> 149 [label="yes, missing" color="#0000FF"]
-    77 -> 150 [label="no" color="#FF0000"]
+    77 [ label="manufacturer<36" ]
+    77 -> 151 [label="yes, missing" color="#0000FF"]
+    77 -> 152 [label="no" color="#FF0000"]
 
-    149 [ label="leaf=881.965759" ]
+    151 [ label="leaf=460.652649" ]
 
-    150 [ label="leaf=612.563293" ]
+    152 [ label="leaf=590.423096" ]
 
-    78 [ label="type<10.5" ]
-    78 -> 151 [label="yes, missing" color="#0000FF"]
-    78 -> 152 [label="no" color="#FF0000"]
+    78 [ label="type<9.5" ]
+    78 -> 153 [label="yes, missing" color="#0000FF"]
+    78 -> 154 [label="no" color="#FF0000"]
 
-    151 [ label="leaf=1322.39734" ]
+    153 [ label="leaf=609.342224" ]
 
-    152 [ label="leaf=776.539734" ]
+    154 [ label="leaf=807.705566" ]
 
     4 [ label="fuel<0.5" ]
     4 -> 9 [label="yes, missing" color="#0000FF"]
@@ -205,77 +205,71 @@ digraph {
     9 -> 19 [label="yes, missing" color="#0000FF"]
     9 -> 20 [label="no" color="#FF0000"]
 
-    19 [ label="manufacturer<5.5" ]
+    19 [ label="type<4.5" ]
     19 -> 39 [label="yes, missing" color="#0000FF"]
     19 -> 40 [label="no" color="#FF0000"]
 
-    39 [ label="year<112.5" ]
+    39 [ label="odometer<123525" ]
     39 -> 79 [label="yes, missing" color="#0000FF"]
     39 -> 80 [label="no" color="#FF0000"]
 
-    79 [ label="type<2" ]
-    79 -> 153 [label="yes, missing" color="#0000FF"]
-    79 -> 154 [label="no" color="#FF0000"]
+    79 [ label="odometer<94500" ]
+    79 -> 155 [label="yes, missing" color="#0000FF"]
+    79 -> 156 [label="no" color="#FF0000"]
 
-    153 [ label="leaf=1486.00232" ]
+    155 [ label="leaf=2052.58765" ]
 
-    154 [ label="leaf=1040.85999" ]
+    156 [ label="leaf=1713.69727" ]
 
-    80 [ label="odometer<65742" ]
-    80 -> 155 [label="yes, missing" color="#0000FF"]
-    80 -> 156 [label="no" color="#FF0000"]
+    80 [ label="type<2.5" ]
+    80 -> 157 [label="yes, missing" color="#0000FF"]
+    80 -> 158 [label="no" color="#FF0000"]
 
-    155 [ label="leaf=2253.27026" ]
+    157 [ label="leaf=1460.9762" ]
 
-    156 [ label="leaf=1753.78711" ]
+    158 [ label="leaf=522.785706" ]
 
-    40 [ label="odometer<111860.5" ]
+    40 [ label="odometer<111622" ]
     40 -> 81 [label="yes, missing" color="#0000FF"]
     40 -> 82 [label="no" color="#FF0000"]
 
-    81 [ label="type<5" ]
-    81 -> 157 [label="yes, missing" color="#0000FF"]
-    81 -> 158 [label="no" color="#FF0000"]
+    81 [ label="manufacturer<5.5" ]
+    81 -> 159 [label="yes, missing" color="#0000FF"]
+    81 -> 160 [label="no" color="#FF0000"]
 
-    157 [ label="leaf=2082.59058" ]
+    159 [ label="leaf=1815.15564" ]
 
-    158 [ label="leaf=4146.30859" ]
+    160 [ label="leaf=4110.90137" ]
 
-    82 [ label="odometer<234815" ]
-    82 -> 159 [label="yes, missing" color="#0000FF"]
-    82 -> 160 [label="no" color="#FF0000"]
+    82 [ label="odometer<215092" ]
+    82 -> 161 [label="yes, missing" color="#0000FF"]
+    82 -> 162 [label="no" color="#FF0000"]
 
-    159 [ label="leaf=3262.68506" ]
+    161 [ label="leaf=3260.12939" ]
 
-    160 [ label="leaf=2262.22461" ]
+    162 [ label="leaf=2446.74292" ]
 
     20 [ label="odometer<466005.5" ]
     20 -> 41 [label="yes, missing" color="#0000FF"]
     20 -> 42 [label="no" color="#FF0000"]
 
-    41 [ label="odometer<96057.5" ]
+    41 [ label="transmission<1.5" ]
     41 -> 83 [label="yes, missing" color="#0000FF"]
     41 -> 84 [label="no" color="#FF0000"]
 
-    83 [ label="transmission<1.5" ]
-    83 -> 161 [label="yes, missing" color="#0000FF"]
-    83 -> 162 [label="no" color="#FF0000"]
+    83 [ label="odometer<96250" ]
+    83 -> 163 [label="yes, missing" color="#0000FF"]
+    83 -> 164 [label="no" color="#FF0000"]
 
-    161 [ label="leaf=1222.95642" ]
+    163 [ label="leaf=1205.28088" ]
 
-    162 [ label="leaf=1711.38953" ]
+    164 [ label="leaf=870.573059" ]
 
-    84 [ label="type<2" ]
-    84 -> 163 [label="yes, missing" color="#0000FF"]
-    84 -> 164 [label="no" color="#FF0000"]
+    84 [ label="leaf=1696.51233" ]
 
-    163 [ label="leaf=1505.78833" ]
+    42 [ label="leaf=2306.61987" ]
 
-    164 [ label="leaf=835.491638" ]
-
-    42 [ label="leaf=2505.83545" ]
-
-    10 [ label="odometer<70977" ]
+    10 [ label="odometer<82805.5" ]
     10 -> 21 [label="yes, missing" color="#0000FF"]
     10 -> 22 [label="no" color="#FF0000"]
 
@@ -283,7 +277,7 @@ digraph {
     21 -> 43 [label="yes, missing" color="#0000FF"]
     21 -> 44 [label="no" color="#FF0000"]
 
-    43 [ label="odometer<799.5" ]
+    43 [ label="odometer<416.5" ]
     43 -> 85 [label="yes, missing" color="#0000FF"]
     43 -> 86 [label="no" color="#FF0000"]
 
@@ -291,311 +285,347 @@ digraph {
     85 -> 165 [label="yes, missing" color="#0000FF"]
     85 -> 166 [label="no" color="#FF0000"]
 
-    165 [ label="leaf=1004.56024" ]
+    165 [ label="leaf=901.465271" ]
 
-    166 [ label="leaf=388.369476" ]
+    166 [ label="leaf=377.321167" ]
 
-    86 [ label="odometer<42459" ]
+    86 [ label="odometer<43429" ]
     86 -> 167 [label="yes, missing" color="#0000FF"]
     86 -> 168 [label="no" color="#FF0000"]
 
-    167 [ label="leaf=2273.35864" ]
+    167 [ label="leaf=2229.53882" ]
 
-    168 [ label="leaf=1777.48767" ]
+    168 [ label="leaf=1674.91565" ]
 
     44 [ label="type<8.5" ]
     44 -> 87 [label="yes, missing" color="#0000FF"]
     44 -> 88 [label="no" color="#FF0000"]
 
-    87 [ label="manufacturer<13.5" ]
+    87 [ label="manufacturer<14" ]
     87 -> 169 [label="yes, missing" color="#0000FF"]
     87 -> 170 [label="no" color="#FF0000"]
 
-    169 [ label="leaf=2917.42432" ]
+    169 [ label="leaf=2821.11108" ]
 
-    170 [ label="leaf=2391.75464" ]
+    170 [ label="leaf=2332.67603" ]
 
-    88 [ label="fuel<1.5" ]
+    88 [ label="odometer<64761" ]
     88 -> 171 [label="yes, missing" color="#0000FF"]
     88 -> 172 [label="no" color="#FF0000"]
 
-    171 [ label="leaf=3056.26245" ]
+    171 [ label="leaf=2208.83105" ]
 
-    172 [ label="leaf=2117.04761" ]
+    172 [ label="leaf=1668.3938" ]
 
-    22 [ label="year<112.5" ]
+    22 [ label="type<9.5" ]
     22 -> 45 [label="yes, missing" color="#0000FF"]
     22 -> 46 [label="no" color="#FF0000"]
 
-    45 [ label="odometer<109993.5" ]
+    45 [ label="type<8.5" ]
     45 -> 89 [label="yes, missing" color="#0000FF"]
     45 -> 90 [label="no" color="#FF0000"]
 
-    89 [ label="type<9.5" ]
+    89 [ label="type<5.5" ]
     89 -> 173 [label="yes, missing" color="#0000FF"]
     89 -> 174 [label="no" color="#FF0000"]
 
-    173 [ label="leaf=1276.96509" ]
+    173 [ label="leaf=1169.09998" ]
 
-    174 [ label="leaf=1731.74707" ]
+    174 [ label="leaf=1853.66931" ]
 
-    90 [ label="type<9.5" ]
+    90 [ label="odometer<109815" ]
     90 -> 175 [label="yes, missing" color="#0000FF"]
     90 -> 176 [label="no" color="#FF0000"]
 
-    175 [ label="leaf=1005.18976" ]
+    175 [ label="leaf=1099.70349" ]
 
-    176 [ label="leaf=1363.50146" ]
+    176 [ label="leaf=767.494324" ]
 
-    46 [ label="type<9.5" ]
+    46 [ label="type<10.5" ]
     46 -> 91 [label="yes, missing" color="#0000FF"]
     46 -> 92 [label="no" color="#FF0000"]
 
-    91 [ label="type<8.5" ]
+    91 [ label="odometer<146778" ]
     91 -> 177 [label="yes, missing" color="#0000FF"]
     91 -> 178 [label="no" color="#FF0000"]
 
-    177 [ label="leaf=1613.52515" ]
+    177 [ label="leaf=2176.70068" ]
 
-    178 [ label="leaf=1101.31323" ]
+    178 [ label="leaf=1556.83936" ]
 
-    92 [ label="type<10.5" ]
+    92 [ label="odometer<120833" ]
     92 -> 179 [label="yes, missing" color="#0000FF"]
     92 -> 180 [label="no" color="#FF0000"]
 
-    179 [ label="leaf=2281.88647" ]
+    179 [ label="leaf=1298.71716" ]
 
-    180 [ label="leaf=1297.53577" ]
+    180 [ label="leaf=1001.08856" ]
 
-    2 [ label="year<117.5" ]
+    2 [ label="odometer<46368" ]
     2 -> 5 [label="yes, missing" color="#0000FF"]
     2 -> 6 [label="no" color="#FF0000"]
 
-    5 [ label="fuel<0.5" ]
+    5 [ label="year<117.5" ]
     5 -> 11 [label="yes, missing" color="#0000FF"]
     5 -> 12 [label="no" color="#FF0000"]
 
-    11 [ label="manufacturer<37.5" ]
+    11 [ label="fuel<0.5" ]
     11 -> 23 [label="yes, missing" color="#0000FF"]
     11 -> 24 [label="no" color="#FF0000"]
 
-    23 [ label="manufacturer<6" ]
-    23 -> 47 [label="yes, missing" color="#0000FF"]
-    23 -> 48 [label="no" color="#FF0000"]
+    23 [ label="transmission<0.5" ]
+    23 -> 47 [label="yes" color="#FF0000"]
+    23 -> 48 [label="no, missing" color="#0000FF"]
 
-    47 [ label="manufacturer<1.5" ]
+    47 [ label="manufacturer<35.5" ]
     47 -> 93 [label="yes, missing" color="#0000FF"]
     47 -> 94 [label="no" color="#FF0000"]
 
-    93 [ label="leaf=1899.58789" ]
+    93 [ label="manufacturer<5.5" ]
+    93 -> 181 [label="yes, missing" color="#0000FF"]
+    93 -> 182 [label="no" color="#FF0000"]
 
-    94 [ label="odometer<94739" ]
-    94 -> 181 [label="yes, missing" color="#0000FF"]
-    94 -> 182 [label="no" color="#FF0000"]
+    181 [ label="leaf=2910.07617" ]
 
-    181 [ label="leaf=2688.63647" ]
+    182 [ label="leaf=4907.99023" ]
 
-    182 [ label="leaf=1846.31433" ]
+    94 [ label="leaf=1247.46667" ]
 
-    48 [ label="odometer<153422.5" ]
+    48 [ label="type<8.5" ]
     48 -> 95 [label="yes, missing" color="#0000FF"]
     48 -> 96 [label="no" color="#FF0000"]
 
-    95 [ label="manufacturer<14" ]
+    95 [ label="odometer<23519.5" ]
     95 -> 183 [label="yes, missing" color="#0000FF"]
     95 -> 184 [label="no" color="#FF0000"]
 
-    183 [ label="leaf=4867.6709" ]
+    183 [ label="leaf=3104.54858" ]
 
-    184 [ label="leaf=4072.88086" ]
+    184 [ label="leaf=4456.42334" ]
 
-    96 [ label="year<116.5" ]
+    96 [ label="odometer<22917" ]
     96 -> 185 [label="yes, missing" color="#0000FF"]
     96 -> 186 [label="no" color="#FF0000"]
 
-    185 [ label="leaf=3383.65991" ]
+    185 [ label="leaf=2546.27808" ]
 
-    186 [ label="leaf=4267.85889" ]
+    186 [ label="leaf=2052.14038" ]
 
-    24 [ label="year<115.5" ]
+    24 [ label="title_status<1.5" ]
     24 -> 49 [label="yes, missing" color="#0000FF"]
     24 -> 50 [label="no" color="#FF0000"]
 
-    49 [ label="odometer<563534.5" ]
+    49 [ label="type<8.5" ]
     49 -> 97 [label="yes, missing" color="#0000FF"]
     49 -> 98 [label="no" color="#FF0000"]
 
-    97 [ label="odometer<89310.5" ]
+    97 [ label="type<5.5" ]
     97 -> 187 [label="yes, missing" color="#0000FF"]
     97 -> 188 [label="no" color="#FF0000"]
 
-    187 [ label="leaf=1753.74084" ]
+    187 [ label="leaf=2866.70996" ]
 
-    188 [ label="leaf=867.104004" ]
+    188 [ label="leaf=3347.69019" ]
 
-    98 [ label="leaf=3295.96021" ]
+    98 [ label="type<9.5" ]
+    98 -> 189 [label="yes, missing" color="#0000FF"]
+    98 -> 190 [label="no" color="#FF0000"]
 
-    50 [ label="leaf=4271.36914" ]
+    189 [ label="leaf=2481.79761" ]
 
-    12 [ label="odometer<61400.5" ]
+    190 [ label="leaf=3222.53931" ]
+
+    50 [ label="type<9.5" ]
+    50 -> 99 [label="yes, missing" color="#0000FF"]
+    50 -> 100 [label="no" color="#FF0000"]
+
+    99 [ label="type<8.5" ]
+    99 -> 191 [label="yes, missing" color="#0000FF"]
+    99 -> 192 [label="no" color="#FF0000"]
+
+    191 [ label="leaf=1964.3606" ]
+
+    192 [ label="leaf=1295.06445" ]
+
+    100 [ label="type<10.5" ]
+    100 -> 193 [label="yes, missing" color="#0000FF"]
+    100 -> 194 [label="no" color="#FF0000"]
+
+    193 [ label="leaf=2825.15063" ]
+
+    194 [ label="leaf=1997.90845" ]
+
+    12 [ label="manufacturer<14" ]
     12 -> 25 [label="yes, missing" color="#0000FF"]
     12 -> 26 [label="no" color="#FF0000"]
 
-    25 [ label="type<8.5" ]
+    25 [ label="type<9.5" ]
     25 -> 51 [label="yes, missing" color="#0000FF"]
     25 -> 52 [label="no" color="#FF0000"]
 
-    51 [ label="type<5.5" ]
-    51 -> 99 [label="yes, missing" color="#0000FF"]
-    51 -> 100 [label="no" color="#FF0000"]
+    51 [ label="manufacturer<12.5" ]
+    51 -> 101 [label="yes, missing" color="#0000FF"]
+    51 -> 102 [label="no" color="#FF0000"]
 
-    99 [ label="type<3.5" ]
-    99 -> 189 [label="yes, missing" color="#0000FF"]
-    99 -> 190 [label="no" color="#FF0000"]
+    101 [ label="title_status<2.5" ]
+    101 -> 195 [label="yes, missing" color="#0000FF"]
+    101 -> 196 [label="no" color="#FF0000"]
 
-    189 [ label="leaf=2760.8186" ]
+    195 [ label="leaf=3637.72339" ]
 
-    190 [ label="leaf=1879.17798" ]
+    196 [ label="leaf=2140.59058" ]
 
-    100 [ label="odometer<4040" ]
-    100 -> 191 [label="yes, missing" color="#0000FF"]
-    100 -> 192 [label="no" color="#FF0000"]
+    102 [ label="title_status<2" ]
+    102 -> 197 [label="yes, missing" color="#0000FF"]
+    102 -> 198 [label="no" color="#FF0000"]
 
-    191 [ label="leaf=4134.17529" ]
+    197 [ label="leaf=4406.62158" ]
 
-    192 [ label="leaf=3112.14233" ]
+    198 [ label="leaf=1874.40002" ]
 
-    52 [ label="type<9.5" ]
-    52 -> 101 [label="yes, missing" color="#0000FF"]
-    52 -> 102 [label="no" color="#FF0000"]
+    52 [ label="type<10.5" ]
+    52 -> 103 [label="yes, missing" color="#0000FF"]
+    52 -> 104 [label="no" color="#FF0000"]
 
-    101 [ label="manufacturer<6.5" ]
-    101 -> 193 [label="yes, missing" color="#0000FF"]
-    101 -> 194 [label="no" color="#FF0000"]
+    103 [ label="fuel<1" ]
+    103 -> 199 [label="yes, missing" color="#0000FF"]
+    103 -> 200 [label="no" color="#FF0000"]
 
-    193 [ label="leaf=2626.21533" ]
+    199 [ label="leaf=5604.78467" ]
 
-    194 [ label="leaf=1980.43591" ]
+    200 [ label="leaf=4652.86133" ]
 
-    102 [ label="type<10.5" ]
-    102 -> 195 [label="yes, missing" color="#0000FF"]
-    102 -> 196 [label="no" color="#FF0000"]
+    104 [ label="transmission<1" ]
+    104 -> 201 [label="yes" color="#FF0000"]
+    104 -> 202 [label="no, missing" color="#0000FF"]
 
-    195 [ label="leaf=3693.49609" ]
+    201 [ label="leaf=3451.28516" ]
 
-    196 [ label="leaf=2195.1521" ]
+    202 [ label="leaf=2741.71558" ]
 
     26 [ label="type<8.5" ]
     26 -> 53 [label="yes, missing" color="#0000FF"]
     26 -> 54 [label="no" color="#FF0000"]
 
     53 [ label="type<7.5" ]
-    53 -> 103 [label="yes, missing" color="#0000FF"]
-    53 -> 104 [label="no" color="#FF0000"]
+    53 -> 105 [label="yes, missing" color="#0000FF"]
+    53 -> 106 [label="no" color="#FF0000"]
 
-    103 [ label="odometer<86512" ]
-    103 -> 197 [label="yes, missing" color="#0000FF"]
-    103 -> 198 [label="no" color="#FF0000"]
+    105 [ label="manufacturer<16.5" ]
+    105 -> 203 [label="yes, missing" color="#0000FF"]
+    105 -> 204 [label="no" color="#FF0000"]
 
-    197 [ label="leaf=2132.79761" ]
+    203 [ label="leaf=2827.81763" ]
 
-    198 [ label="leaf=1771.98792" ]
+    204 [ label="leaf=3491.12305" ]
 
-    104 [ label="odometer<118576.5" ]
-    104 -> 199 [label="yes, missing" color="#0000FF"]
-    104 -> 200 [label="no" color="#FF0000"]
+    106 [ label="transmission<1.5" ]
+    106 -> 205 [label="yes, missing" color="#0000FF"]
+    106 -> 206 [label="no" color="#FF0000"]
 
-    199 [ label="leaf=3174.02417" ]
+    205 [ label="leaf=4682.76172" ]
 
-    200 [ label="leaf=2561.67651" ]
+    206 [ label="leaf=3956.6333" ]
 
     54 [ label="type<9.5" ]
-    54 -> 105 [label="yes, missing" color="#0000FF"]
-    54 -> 106 [label="no" color="#FF0000"]
+    54 -> 107 [label="yes, missing" color="#0000FF"]
+    54 -> 108 [label="no" color="#FF0000"]
 
-    105 [ label="odometer<84560" ]
-    105 -> 201 [label="yes, missing" color="#0000FF"]
-    105 -> 202 [label="no" color="#FF0000"]
+    107 [ label="transmission<1.5" ]
+    107 -> 207 [label="yes, missing" color="#0000FF"]
+    107 -> 208 [label="no" color="#FF0000"]
 
-    201 [ label="leaf=1562.22363" ]
+    207 [ label="leaf=2327.88623" ]
 
-    202 [ label="leaf=1181.79626" ]
+    208 [ label="leaf=3037.55933" ]
 
-    106 [ label="type<10.5" ]
-    106 -> 203 [label="yes, missing" color="#0000FF"]
-    106 -> 204 [label="no" color="#FF0000"]
+    108 [ label="type<11.5" ]
+    108 -> 209 [label="yes, missing" color="#0000FF"]
+    108 -> 210 [label="no" color="#FF0000"]
 
-    203 [ label="leaf=2955.0874" ]
+    209 [ label="leaf=4656.54834" ]
 
-    204 [ label="leaf=1755.58228" ]
+    210 [ label="leaf=2256.83594" ]
 
     6 [ label="fuel<0.5" ]
     6 -> 13 [label="yes, missing" color="#0000FF"]
     6 -> 14 [label="no" color="#FF0000"]
 
-    13 [ label="transmission<1.5" ]
+    13 [ label="manufacturer<37.5" ]
     13 -> 27 [label="yes, missing" color="#0000FF"]
     13 -> 28 [label="no" color="#FF0000"]
 
-    27 [ label="odometer<127911" ]
+    27 [ label="odometer<106088" ]
     27 -> 55 [label="yes, missing" color="#0000FF"]
     27 -> 56 [label="no" color="#FF0000"]
 
-    55 [ label="type<5.5" ]
-    55 -> 107 [label="yes, missing" color="#0000FF"]
-    55 -> 108 [label="no" color="#FF0000"]
+    55 [ label="type<5" ]
+    55 -> 109 [label="yes, missing" color="#0000FF"]
+    55 -> 110 [label="no" color="#FF0000"]
 
-    107 [ label="manufacturer<18.5" ]
-    107 -> 205 [label="yes, missing" color="#0000FF"]
-    107 -> 206 [label="no" color="#FF0000"]
+    109 [ label="odometer<85555.5" ]
+    109 -> 211 [label="yes, missing" color="#0000FF"]
+    109 -> 212 [label="no" color="#FF0000"]
 
-    205 [ label="leaf=2822.87158" ]
+    211 [ label="leaf=2888.75952" ]
 
-    206 [ label="leaf=4494.60791" ]
+    212 [ label="leaf=1859.04822" ]
 
-    108 [ label="year<118.5" ]
-    108 -> 207 [label="yes, missing" color="#0000FF"]
-    108 -> 208 [label="no" color="#FF0000"]
+    110 [ label="manufacturer<5.5" ]
+    110 -> 213 [label="yes, missing" color="#0000FF"]
+    110 -> 214 [label="no" color="#FF0000"]
 
-    207 [ label="leaf=4990.43457" ]
+    213 [ label="leaf=2040.45789" ]
 
-    208 [ label="leaf=5475.62646" ]
+    214 [ label="leaf=4966.86475" ]
 
-    56 [ label="odometer<233375" ]
-    56 -> 109 [label="yes, missing" color="#0000FF"]
-    56 -> 110 [label="no" color="#FF0000"]
+    56 [ label="odometer<153422.5" ]
+    56 -> 111 [label="yes, missing" color="#0000FF"]
+    56 -> 112 [label="no" color="#FF0000"]
 
-    109 [ label="leaf=3893.75391" ]
+    111 [ label="manufacturer<5.5" ]
+    111 -> 215 [label="yes, missing" color="#0000FF"]
+    111 -> 216 [label="no" color="#FF0000"]
 
-    110 [ label="leaf=2075.51123" ]
+    215 [ label="leaf=1692.35339" ]
 
-    28 [ label="type<8.5" ]
+    216 [ label="leaf=4245.84912" ]
+
+    112 [ label="odometer<199774.5" ]
+    112 -> 217 [label="yes, missing" color="#0000FF"]
+    112 -> 218 [label="no" color="#FF0000"]
+
+    217 [ label="leaf=3693.62695" ]
+
+    218 [ label="leaf=2991.84961" ]
+
+    28 [ label="odometer<442966.5" ]
     28 -> 57 [label="yes, missing" color="#0000FF"]
     28 -> 58 [label="no" color="#FF0000"]
 
-    57 [ label="odometer<23519.5" ]
-    57 -> 111 [label="yes, missing" color="#0000FF"]
-    57 -> 112 [label="no" color="#FF0000"]
+    57 [ label="transmission<0.5" ]
+    57 -> 113 [label="yes" color="#FF0000"]
+    57 -> 114 [label="no, missing" color="#0000FF"]
 
-    111 [ label="odometer<17340.5" ]
-    111 -> 209 [label="yes, missing" color="#0000FF"]
-    111 -> 210 [label="no" color="#FF0000"]
+    113 [ label="odometer<106000" ]
+    113 -> 219 [label="yes, missing" color="#0000FF"]
+    113 -> 220 [label="no" color="#FF0000"]
 
-    209 [ label="leaf=3700.46289" ]
+    219 [ label="leaf=1296.52002" ]
 
-    210 [ label="leaf=2724.91479" ]
+    220 [ label="leaf=877.886658" ]
 
-    112 [ label="type<7.5" ]
-    112 -> 211 [label="yes, missing" color="#0000FF"]
-    112 -> 212 [label="no" color="#FF0000"]
+    114 [ label="odometer<418596.5" ]
+    114 -> 221 [label="yes, missing" color="#0000FF"]
+    114 -> 222 [label="no" color="#FF0000"]
 
-    211 [ label="leaf=2836.31323" ]
+    221 [ label="leaf=1849.05176" ]
 
-    212 [ label="leaf=5265.30225" ]
+    222 [ label="leaf=99.9666672" ]
 
-    58 [ label="leaf=2638.05322" ]
+    58 [ label="leaf=3540.33472" ]
 
-    14 [ label="year<119.5" ]
+    14 [ label="odometer<83447.5" ]
     14 -> 29 [label="yes, missing" color="#0000FF"]
     14 -> 30 [label="no" color="#FF0000"]
 
@@ -603,87 +633,87 @@ digraph {
     29 -> 59 [label="yes, missing" color="#0000FF"]
     29 -> 60 [label="no" color="#FF0000"]
 
-    59 [ label="type<5.5" ]
-    59 -> 113 [label="yes, missing" color="#0000FF"]
-    59 -> 114 [label="no" color="#FF0000"]
+    59 [ label="type<7.5" ]
+    59 -> 115 [label="yes, missing" color="#0000FF"]
+    59 -> 116 [label="no" color="#FF0000"]
 
-    113 [ label="type<3.5" ]
-    113 -> 213 [label="yes, missing" color="#0000FF"]
-    113 -> 214 [label="no" color="#FF0000"]
+    115 [ label="title_status<1.5" ]
+    115 -> 223 [label="yes, missing" color="#0000FF"]
+    115 -> 224 [label="no" color="#FF0000"]
 
-    213 [ label="leaf=3059.68823" ]
+    223 [ label="leaf=2425.64868" ]
 
-    214 [ label="leaf=2289.65479" ]
+    224 [ label="leaf=1529.46887" ]
 
-    114 [ label="transmission<1.5" ]
-    114 -> 215 [label="yes, missing" color="#0000FF"]
-    114 -> 216 [label="no" color="#FF0000"]
+    116 [ label="manufacturer<14" ]
+    116 -> 225 [label="yes, missing" color="#0000FF"]
+    116 -> 226 [label="no" color="#FF0000"]
 
-    215 [ label="leaf=3770.62939" ]
+    225 [ label="leaf=3604.16284" ]
 
-    216 [ label="leaf=3306.08325" ]
+    226 [ label="leaf=3171.57666" ]
 
     60 [ label="type<9.5" ]
-    60 -> 115 [label="yes, missing" color="#0000FF"]
-    60 -> 116 [label="no" color="#FF0000"]
+    60 -> 117 [label="yes, missing" color="#0000FF"]
+    60 -> 118 [label="no" color="#FF0000"]
 
-    115 [ label="manufacturer<6.5" ]
-    115 -> 217 [label="yes, missing" color="#0000FF"]
-    115 -> 218 [label="no" color="#FF0000"]
+    117 [ label="manufacturer<4.5" ]
+    117 -> 227 [label="yes, missing" color="#0000FF"]
+    117 -> 228 [label="no" color="#FF0000"]
 
-    217 [ label="leaf=3138.88745" ]
+    227 [ label="leaf=2601.9436" ]
 
-    218 [ label="leaf=2330.32861" ]
+    228 [ label="leaf=1665.85059" ]
 
-    116 [ label="type<10.5" ]
-    116 -> 219 [label="yes, missing" color="#0000FF"]
-    116 -> 220 [label="no" color="#FF0000"]
+    118 [ label="type<10.5" ]
+    118 -> 229 [label="yes, missing" color="#0000FF"]
+    118 -> 230 [label="no" color="#FF0000"]
 
-    219 [ label="leaf=3958.38086" ]
+    229 [ label="leaf=3571.2168" ]
 
-    220 [ label="leaf=2673.7168" ]
+    230 [ label="leaf=2081.15796" ]
 
-    30 [ label="manufacturer<14" ]
+    30 [ label="manufacturer<13.5" ]
     30 -> 61 [label="yes, missing" color="#0000FF"]
     30 -> 62 [label="no" color="#FF0000"]
 
-    61 [ label="manufacturer<12.5" ]
-    61 -> 117 [label="yes, missing" color="#0000FF"]
-    61 -> 118 [label="no" color="#FF0000"]
+    61 [ label="fuel<3.5" ]
+    61 -> 119 [label="yes, missing" color="#0000FF"]
+    61 -> 120 [label="no" color="#FF0000"]
 
-    117 [ label="title_status<2.5" ]
-    117 -> 221 [label="yes, missing" color="#0000FF"]
-    117 -> 222 [label="no" color="#FF0000"]
+    119 [ label="type<9.5" ]
+    119 -> 231 [label="yes, missing" color="#0000FF"]
+    119 -> 232 [label="no" color="#FF0000"]
 
-    221 [ label="leaf=3659.35156" ]
+    231 [ label="leaf=1925.89392" ]
 
-    222 [ label="leaf=2107.14453" ]
+    232 [ label="leaf=2472.96826" ]
 
-    118 [ label="title_status<2" ]
-    118 -> 223 [label="yes, missing" color="#0000FF"]
-    118 -> 224 [label="no" color="#FF0000"]
+    120 [ label="type<8.5" ]
+    120 -> 233 [label="yes, missing" color="#0000FF"]
+    120 -> 234 [label="no" color="#FF0000"]
 
-    223 [ label="leaf=4536.73779" ]
+    233 [ label="leaf=3071.29565" ]
 
-    224 [ label="leaf=1874.40002" ]
+    234 [ label="leaf=1565.92334" ]
 
-    62 [ label="type<8.5" ]
-    62 -> 119 [label="yes, missing" color="#0000FF"]
-    62 -> 120 [label="no" color="#FF0000"]
+    62 [ label="manufacturer<30" ]
+    62 -> 121 [label="yes, missing" color="#0000FF"]
+    62 -> 122 [label="no" color="#FF0000"]
 
-    119 [ label="type<7.5" ]
-    119 -> 225 [label="yes, missing" color="#0000FF"]
-    119 -> 226 [label="no" color="#FF0000"]
+    121 [ label="type<2.5" ]
+    121 -> 235 [label="yes, missing" color="#0000FF"]
+    121 -> 236 [label="no" color="#FF0000"]
 
-    225 [ label="leaf=3362.48169" ]
+    235 [ label="leaf=1709.10803" ]
 
-    226 [ label="leaf=4251.22119" ]
+    236 [ label="leaf=1312.46033" ]
 
-    120 [ label="manufacturer<21" ]
-    120 -> 227 [label="yes, missing" color="#0000FF"]
-    120 -> 228 [label="no" color="#FF0000"]
+    122 [ label="manufacturer<34" ]
+    122 -> 237 [label="yes, missing" color="#0000FF"]
+    122 -> 238 [label="no" color="#FF0000"]
 
-    227 [ label="leaf=2514.47339" ]
+    237 [ label="leaf=2636.01025" ]
 
-    228 [ label="leaf=3193.82275" ]
+    238 [ label="leaf=1821.23633" ]
 }
